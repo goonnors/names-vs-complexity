@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Names vs Complexity</title>
+    <meta
+      name="description"
+      content="Java methods that contain variables with compound names tend to have larger cyclomatic complexity."
+    />
+    <meta name="author" content="yegor256" />
+    <link rel="stylesheet" href="assets/css/output.css" />
+  </head>
+
+  <body class="min-h-screen bg-gray-100 font-mono">
+    <div class="container mx-auto">
+      <h1 class="text-3xl text-center py-10">Names vs. complexity</h1>
+      <p class="my-5">
+        <span class="font-bold">TODO:</span> <br />
+        1. Что-то сделать с ошибками парсинга *.java файлов в библиотеке
+        javalang. <br />
+        2. Исправить ситуацию с Memory Limit Exceed для больших файлов при
+        калькуляции. <br />
+        3. Выяснить почему большой разброс названий переменных при CC=1
+      </p>
+      <p class="my-5">
+        <span class="font-bold">План:</span> <br />
+        Поделить данные на три части по их концентрации. Найти их количественное
+        распределение.<br />
+        Построить графики для каждой части.<br />
+        Сделать выводы.
+      </p>
+      <p class="my-5">
+        Разброс переменных при CC=1 очень большой. Видимо это небольшие файлы с
+        простой логикой. Названия переменных в таких файлах не влияют на
+        сложность, поэтому предлагаю их пока не учитывать.
+      </p>
+      <p class="my-5">
+        В основном все данные сосредоточены в области 2 &lt; cc &lt; 10; 0 &lt;
+        compund_names &lt; 7. Это белый кусок на графике. Данных в этой области
+        так много, что ни бы закрыли весь график. Здесь можно обобщить и
+        сказать, что программы с допустимым уровнем сложности имеют определённое
+        и маленькое число compound names.
+      </p>
+      <p class="my-5">
+        Остальные данные - это последний график. По нему затрудняюсь что-то
+        сказать. Можно попробовать отфильтровать данные по значениям и
+        посмотреть распределение. Я попробую использовать другой тип графика,
+        чтобы проверить
+      </p>
+    </div>
+    <div style="margin: 0 auto">
+      <canvas id="myChart" width="800" height="800"></canvas>
+    </div>
+    <script src="dist/main.js"></script>
+  </body>
+</html>
