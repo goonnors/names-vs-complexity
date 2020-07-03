@@ -1,6 +1,8 @@
 import Chart from "chart.js";
 import Csv from "./CsvR.js";
 import concentrationData from "./concentration-data.json";
+import cc1DissipatioData from "./cc1dissipation-data.json";
+import cc1ConcentrationNamesData from "./cc-1-concentraion-names-data.json";
 
 function readTextFile(file) {
   return new Promise((resolve, reject) => {
@@ -21,7 +23,6 @@ const concentrationCtx = document
   .getElementById("concentration")
   .getContext("2d");
 concentrationCtx.canvas.parentNode.style.width = "300px";
-// concentrationCtx.canvas.parentNode.style.height = "500px";
 const concentrationGraph = new Chart(concentrationCtx, {
   type: "polarArea",
   data: concentrationData,
@@ -34,52 +35,45 @@ const concentrationGraph = new Chart(concentrationCtx, {
   }
 });
 
-var ctx = document.getElementById("myChart").getContext("2d");
-ctx.canvas.parentNode.style.width = "300px";
-const chart = new Chart(ctx, {
-  type: "bubble",
-  responsive: false,
-  data: {
-    datasets: [
-      {
-        label: "Bubble Dataset",
-        data: []
-      }
-    ]
-  },
+const cc1DissipationCtx = document
+  .getElementById("cc-1-dissipation")
+  .getContext("2d");
+cc1DissipationCtx.canvas.parentNode.style.width = "500px";
+cc1DissipationCtx.canvas.parentNode.style.height = "500px";
+const cc1DissipationGraph = new Chart(cc1DissipationCtx, {
+  type: "bar",
+  data: cc1DissipatioData,
   options: {
+    title: {
+      display: true,
+      text: "Рис 2. Разброс значений compound names при CC = 1",
+      position: "bottom"
+    },
     scales: {
-      yAxes: [
-        {
-          type: "linear",
-          position: "bottom"
-        }
-      ],
       xAxes: [
         {
-          type: "linear",
-          position: "bottom"
+          display: false,
+          gridLines: {
+            offsetGridLines: true
+          }
         }
       ]
     }
   }
 });
 
-function updateData(data) {
-  console.log(data);
-  chart.data.datasets[0].data = data;
-  chart.update();
-}
-
-readTextFile("summary.csv").then(text => {
-  updateData(new Csv().process(text));
+const cc1ConcentrationNamesCtx = document
+  .getElementById("cc-1-concentration-names")
+  .getContext("2d");
+cc1ConcentrationNamesCtx.canvas.parentNode.style.width = "400px";
+const cc1ConcentrationNamesGraph = new Chart(cc1ConcentrationNamesCtx, {
+  type: "polarArea",
+  data: cc1ConcentrationNamesData,
+  options: {
+    title: {
+      display: true,
+      text: "Рис 3. Распределение концентрации compound names при CC=1",
+      position: "bottom"
+    }
+  }
 });
-
-// document
-//   .getElementById("csvFileInput")
-//   .addEventListener("change", function($event) {
-//     const promise = new Csv().handleFiles(this.files);
-//     promise.then(data => {
-//       updateData(data);
-//     });
-//   });
