@@ -1,5 +1,6 @@
 import Chart from "chart.js";
 import Csv from "./CsvR.js";
+import concentrationData from "./concentration-data.json";
 
 function readTextFile(file) {
   return new Promise((resolve, reject) => {
@@ -16,9 +17,25 @@ function readTextFile(file) {
   });
 }
 
+const concentrationCtx = document
+  .getElementById("concentration")
+  .getContext("2d");
+concentrationCtx.canvas.parentNode.style.width = "300px";
+// concentrationCtx.canvas.parentNode.style.height = "500px";
+const concentrationGraph = new Chart(concentrationCtx, {
+  type: "polarArea",
+  data: concentrationData,
+  options: {
+    title: {
+      display: true,
+      text: "Рис 1. Распределение концентрации CC",
+      position: "bottom"
+    }
+  }
+});
+
 var ctx = document.getElementById("myChart").getContext("2d");
-ctx.canvas.parentNode.style.width = "750px";
-ctx.canvas.parentNode.style.height = "500px";
+ctx.canvas.parentNode.style.width = "300px";
 const chart = new Chart(ctx, {
   type: "bubble",
   responsive: false,
