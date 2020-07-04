@@ -4,8 +4,11 @@ import concentrationData from "./concentration-data.json";
 import cc1DissipatioData from "./cc1dissipation-data.json";
 import cc1ConcentrationNamesData from "./cc-1-concentraion-names-data.json";
 import cc5BubbleData from "./cc-5-bubble-data.json";
+import cc5PolarData from "./cc-5-polar-data.json";
 import cc10BubbleData from "./cc-10-bubble-data.json";
+import cc10PolarData from "./cc-10-polar-data.json";
 import cc20BubbleData from "./cc-20-bubble-data.json";
+import cc20PolarData from "./cc-20-polar-data.json";
 import ccInfBubbleData from "./cc-inf-bubble-data.json";
 
 function readTextFile(file) {
@@ -134,6 +137,23 @@ const cc5BubbleGraph = new Chart(cc5BubbleCtx, {
 /**
  * Figure 5
  */
+const cc5PolarCtx = document.getElementById("cc-5-polar").getContext("2d");
+cc5PolarCtx.canvas.parentNode.style.width = "400px";
+const cc5PolarGraph = new Chart(cc5PolarCtx, {
+  type: "polarArea",
+  data: cc5PolarData,
+  options: {
+    title: {
+      display: true,
+      text: "Рис 5. Распределение концентрации compound names при 1 < CC <= 5",
+      position: "bottom"
+    }
+  }
+});
+
+/**
+ * Figure 6
+ */
 const cc10BubbleCtx = document.getElementById("cc-10-bubble").getContext("2d");
 cc10BubbleCtx.canvas.parentNode.style.width = "500px";
 const cc10BubbleGraph = new Chart(cc10BubbleCtx, {
@@ -146,7 +166,7 @@ const cc10BubbleGraph = new Chart(cc10BubbleCtx, {
     title: {
       display: true,
       text:
-        "Рис 5. Зависимость compound names от CC при значениях 5 < CC <= 10 вместе с частотой",
+        "Рис 6. Зависимость compound names от CC при значениях 5 < CC <= 10 вместе с частотой",
       position: "bottom"
     },
     scales: {
@@ -155,47 +175,7 @@ const cc10BubbleGraph = new Chart(cc10BubbleCtx, {
           type: "logarithmic",
           ticks: {
             callback: function(value, index, values) {
-              return Number(value.toString()); //pass tick values as a string into Number function
-            }
-          }
-        }
-      ],
-      xAxes: [
-        {
-          ticks: {
-            stepSize: 1
-          }
-        }
-      ]
-    }
-  }
-});
-
-/**
- * Figure 6
- */
-const cc20BubbleCtx = document.getElementById("cc-20-bubble").getContext("2d");
-cc20BubbleCtx.canvas.parentNode.style.width = "500px";
-const cc20BubbleGraph = new Chart(cc20BubbleCtx, {
-  type: "bubble",
-  data: cc20BubbleData,
-  options: {
-    legend: {
-      display: false
-    },
-    title: {
-      display: true,
-      text:
-        "Рис 6. Зависимость compound names от CC при значениях 10 < CC <= 20 вместе с частотой",
-      position: "bottom"
-    },
-    scales: {
-      yAxes: [
-        {
-          type: "logarithmic",
-          ticks: {
-            callback: function(value, index, values) {
-              return Number(value.toString()); //pass tick values as a string into Number function
+              return Number(value.toString());
             }
           }
         }
@@ -214,6 +194,80 @@ const cc20BubbleGraph = new Chart(cc20BubbleCtx, {
 /**
  * Figure 7
  */
+const cc10PolarCtx = document.getElementById("cc-10-polar").getContext("2d");
+cc10PolarCtx.canvas.parentNode.style.width = "400px";
+const cc10PolarGraph = new Chart(cc10PolarCtx, {
+  type: "polarArea",
+  data: cc10PolarData,
+  options: {
+    title: {
+      display: true,
+      text: "Рис 7. Распределение концентрации compound names при 5 < CC <= 10",
+      position: "bottom"
+    }
+  }
+});
+
+/**
+ * Figure 8
+ */
+const cc20BubbleCtx = document.getElementById("cc-20-bubble").getContext("2d");
+cc20BubbleCtx.canvas.parentNode.style.width = "500px";
+const cc20BubbleGraph = new Chart(cc20BubbleCtx, {
+  type: "bubble",
+  data: cc20BubbleData,
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text:
+        "Рис 8. Зависимость compound names от CC при значениях 10 < CC <= 20 вместе с частотой",
+      position: "bottom"
+    },
+    scales: {
+      yAxes: [
+        {
+          type: "logarithmic",
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString()); //pass tick values as a string into Number function
+            }
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            stepSize: 1
+          }
+        }
+      ]
+    }
+  }
+});
+
+/**
+ * Figure 9
+ */
+const cc20PolarCtx = document.getElementById("cc-20-polar").getContext("2d");
+cc20PolarCtx.canvas.parentNode.style.width = "400px";
+const cc20PolarGraph = new Chart(cc20PolarCtx, {
+  type: "polarArea",
+  data: cc20PolarData,
+  options: {
+    title: {
+      display: true,
+      text: "Рис 9. Распределение концентрации compound names при 10 < CC <= 20",
+      position: "bottom"
+    }
+  }
+});
+
+/**
+ * Figure 10
+ */
 const ccInfBubbleCtx = document
   .getElementById("cc-inf-bubble")
   .getContext("2d");
@@ -228,7 +282,7 @@ const ccInfBubbleGraph = new Chart(ccInfBubbleCtx, {
     title: {
       display: true,
       text:
-        "Рис 6. Зависимость compound names от CC при значениях CC > 20 вместе с частотой",
+        "Рис 10. Зависимость compound names от CC при значениях CC > 20 вместе с частотой",
       position: "bottom"
     },
     scales: {
@@ -244,7 +298,7 @@ const ccInfBubbleGraph = new Chart(ccInfBubbleCtx, {
       ],
       xAxes: [
         {
-          type: 'logarithmic',
+          type: "logarithmic",
           ticks: {
             callback: function(value, index, values) {
               return Number(value.toString());

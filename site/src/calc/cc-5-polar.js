@@ -1,11 +1,18 @@
 const fs = require("fs");
 const readline = require("readline");
 
-const result = Array(4).fill(0);
-const distributionNums = [0, 1, 5, Infinity];
+const result = Array(6).fill(0);
+const distributionNums = [0, 1, 5, 10, 20, Infinity];
 let size = 0;
 const data = {
-  labels: ["Names=0", "Names=1", "1 < Names <= 5", "Other"],
+  labels: [
+    "Names=0",
+    "Names=1",
+    "1 < Names <= 5",
+    "5 < Names <= 10",
+    "10 < Names <= 20",
+    "Other"
+  ],
   datasets: [
     {
       label: "CC concentration",
@@ -15,7 +22,8 @@ const data = {
         "rgb(75, 192, 192)",
         "rgb(255, 205, 86)",
         "rgb(54, 162, 235)",
-        "rgb(201, 203, 207)"
+        "rgb(201, 203, 207)",
+        "black"
       ]
     }
   ]
@@ -29,7 +37,7 @@ const rl = readline.createInterface({
 rl.on("line", line => {
   const [cc, names] = line.split(",");
 
-  if (Number(cc) === 1) {
+  if (Number(cc) > 1 && Number(cc) <= 5) {
     size++;
     distributionNums.forEach(function(num, idx) {
       if (Number(names) <= num) {
@@ -42,7 +50,7 @@ rl.on("line", line => {
 rl.on("close", () => {
   data.datasets[0].data = format(result);
   fs.writeFile(
-    "../cc-1-concentraion-names-data.json",
+    "../cc-5-polar-data.json",
     JSON.stringify(data),
     err => {
       if (err) throw err;

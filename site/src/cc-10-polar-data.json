@@ -1,0 +1,1 @@
+{"labels":["Names=0","Names=1","1 < Names <= 5","5 < Names <= 10","10 < Names <= 20","Other"],"datasets":[{"label":"CC concentration","data":[13,11,38,22,11,5],"backgroundColor":["rgb(255, 99, 132)","rgb(75, 192, 192)","rgb(255, 205, 86)","rgb(54, 162, 235)","rgb(201, 203, 207)","black"]}]}
