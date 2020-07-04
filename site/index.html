@@ -15,7 +15,7 @@
 
   <body class="min-h-screen bg-gray-100">
     <div class="container mx-auto">
-      <h1 class="text-3xl text-center py-10">Names vs. complexity</h1>
+      <h1 class="text-3xl text-center py-10 font-bold">Names vs. complexity</h1>
       <p class="my-5">
         <span class="font-bold">TODO:</span> <br />
         1. Что-то сделать с ошибками парсинга *.java файлов в библиотеке
@@ -30,32 +30,81 @@
         Построить графики для каждой части.<br />
         Сделать выводы.
       </p>
-      <h2 class="text-2xl text-center py-5">
+      <h2 class="text-2xl text-center py-5 font-bold">
         Результаты
       </h2>
       <p class="my-5 text-justify">
         Было проанализировано 224139 java файлов. Для каждого файла были
         получены значения Cyclomatic Complexity (CC) и количество переменных,
-        имеющих составные названия. Значения CC оказались распределены не
-        равномерно. Половина всех данных (49%) соответствуют значению CC=1. На
-        рис. 1 показано распределение концентрации CC для нескольких областей в
-        процентном соотношении.
+        имеющих составные названия. Значения CC оказались распределены
+        неравномерно. Почти половина всех данных (49%) соответствуют значению
+        CC=1. На рис. 1 показано распределение концентрации CC для нескольких
+        областей в процентном соотношении.
       </p>
       <div class="mx-auto my-10">
         <canvas id="concentration" width="100" height="100"></canvas>
       </div>
-      <h3 class="text-xl text-center my-5">Анализ значений при CC = 1</h3>
-      <p>
-        Разброс <strong>уникальных</strong> значений составных названий
-        переменных при CC = 1 велик (рис. 2). Но в процентном соотношении таких
-        файлов мало (рис. 3). В основном такие файлы вообще не имеют составных
-        названий переменных (60% файлов).
+      <h3 class="text-xl text-center my-5 font-bold">
+        Анализ значений compound names при CC = 1
+      </h3>
+      <p class="my-5 text-justify">
+        На рис. 3 показано распределение составных названий переменных при CC =
+        1. 60% данных не имеют составных названий переменных. 16% имеют 1
+        переменную, ещё 16% имеют небольшую сложность CC &lt; 5, и 8% -
+        остальные файлы.
+      </p>
+      <p class="my-5 text-justify">
+        На рис. 2 показаны уникальные значения составных названий переменных.
       </p>
       <div class="mx-auto my-10">
         <canvas id="cc-1-dissipation" width="100" height="100"></canvas>
       </div>
       <div class="mx-auto my-10">
         <canvas id="cc-1-concentration-names" width="100" height="100"></canvas>
+      </div>
+
+      <h3 class="text-xl text-center my-5 font-bold">
+        Анализ значений compound names при 1 &lt; CC &lt;= 5
+      </h3>
+      <p class="my-5 text-justify">
+        На рис. 4 показаны значения cc и compound names вместе с их частотой при
+        значениях 1 &lt; CC &lt;= 5.
+      </p>
+      <div class="mx-auto my-10">
+        <canvas id="cc-5-bubble" width="100" height="100"></canvas>
+      </div>
+
+      <h3 class="text-xl text-center my-5 font-bold">
+        Анализ значений compound names при 5 &lt; CC &lt;= 10
+      </h3>
+      <p class="my-5 text-justify">
+        На рис. 5 показаны значения cc и compound names вместе с их частотой при
+        значениях 5 &lt; CC &lt;= 10.
+      </p>
+      <div class="mx-auto my-10">
+        <canvas id="cc-10-bubble" width="100" height="100"></canvas>
+      </div>
+
+      <h3 class="text-xl text-center my-5 font-bold">
+        Анализ значений compound names при 10 &lt; CC &lt;= 20
+      </h3>
+      <p class="my-5 text-justify">
+        На рис. 6 показаны значения cc и compound names вместе с их частотой при
+        значениях 10 &lt; CC &lt;= 20.
+      </p>
+      <div class="mx-auto my-10">
+        <canvas id="cc-20-bubble" width="100" height="100"></canvas>
+      </div>
+
+      <h3 class="text-xl text-center my-5 font-bold">
+        Анализ значений compound names при CC &gt; 20
+      </h3>
+      <p class="my-5 text-justify">
+        На рис. 6 показаны значения cc и compound names вместе с их частотой при
+        значениях CC &gt; 20.
+      </p>
+      <div class="mx-auto my-10">
+        <canvas id="cc-inf-bubble" width="100" height="100"></canvas>
       </div>
     </div>
     <script src="dist/main.js"></script>

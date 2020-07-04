@@ -1,6 +1,7 @@
 const fs = require("fs");
 const readline = require("readline");
 
+let size = 0;
 const result = new Map();
 const data = {
   datasets: [
@@ -16,12 +17,13 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", line => {
-  const [cc, name] = line.split(",");
-  if (Number(cc) === 1) {
-    if (result.has(Number(name))) {
-      result.set(Number(name), result.get(Number(name)) + 1);
+  size++;
+  const cc = Number(line.replace(/,.*/, ""));
+  if (Number(cc) > 1 && Number(cc) <= 5) {
+    if (result.has(line)) {
+      result.set(line, result.get(line) + 1);
     } else {
-      result.set(Number(name), 1);
+      result.set(line, 1);
     }
   }
 });
@@ -30,7 +32,7 @@ rl.on("close", () => {
   const values = format(result);
   data.datasets[0].data = values;
   console.log(result.size);
-  fs.writeFile("../cc1concentration-data.json", JSON.stringify(data), err => {
+  fs.writeFile("../cc-5-bubble-data.json", JSON.stringify(data), err => {
     if (err) throw err;
     console.log("The file has been saved!");
   });
@@ -38,12 +40,13 @@ rl.on("close", () => {
 
 function format(result) {
   const data = [];
-  for (let[v, r] of result) {
-    if (v > 20) {
-      continue;
-    }
-    data.push({ x: v, y: v, r: r/100 });
+  for (let [line, r] of result) {
+    const [cc, name] = line.split(",");
+    data.push({
+      x: Number(cc),
+      y: Number(name),
+      r: r === 1 ? 1 : r / 25
+    });
   }
-  data.sort((a, b) => b.r - a.r );
   return data;
 }

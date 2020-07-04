@@ -3,6 +3,10 @@ import Csv from "./CsvR.js";
 import concentrationData from "./concentration-data.json";
 import cc1DissipatioData from "./cc1dissipation-data.json";
 import cc1ConcentrationNamesData from "./cc-1-concentraion-names-data.json";
+import cc5BubbleData from "./cc-5-bubble-data.json";
+import cc10BubbleData from "./cc-10-bubble-data.json";
+import cc20BubbleData from "./cc-20-bubble-data.json";
+import ccInfBubbleData from "./cc-inf-bubble-data.json";
 
 function readTextFile(file) {
   return new Promise((resolve, reject) => {
@@ -19,6 +23,9 @@ function readTextFile(file) {
   });
 }
 
+/**
+ * Figure 1
+ */
 const concentrationCtx = document
   .getElementById("concentration")
   .getContext("2d");
@@ -35,6 +42,9 @@ const concentrationGraph = new Chart(concentrationCtx, {
   }
 });
 
+/**
+ * Figure 2
+ */
 const cc1DissipationCtx = document
   .getElementById("cc-1-dissipation")
   .getContext("2d");
@@ -62,6 +72,9 @@ const cc1DissipationGraph = new Chart(cc1DissipationCtx, {
   }
 });
 
+/**
+ * Figure 3
+ */
 const cc1ConcentrationNamesCtx = document
   .getElementById("cc-1-concentration-names")
   .getContext("2d");
@@ -74,6 +87,171 @@ const cc1ConcentrationNamesGraph = new Chart(cc1ConcentrationNamesCtx, {
       display: true,
       text: "Рис 3. Распределение концентрации compound names при CC=1",
       position: "bottom"
+    }
+  }
+});
+
+/**
+ * Figure 4
+ */
+const cc5BubbleCtx = document.getElementById("cc-5-bubble").getContext("2d");
+cc5BubbleCtx.canvas.parentNode.style.width = "500px";
+const cc5BubbleGraph = new Chart(cc5BubbleCtx, {
+  type: "bubble",
+  data: cc5BubbleData,
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text:
+        "Рис 4. Зависимость compound names от CC при значениях 1 < CC <= 5 вместе с частотой",
+      position: "bottom"
+    },
+    scales: {
+      yAxes: [
+        {
+          type: "logarithmic",
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString()); //pass tick values as a string into Number function
+            }
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            stepSize: 1
+          }
+        }
+      ]
+    }
+  }
+});
+
+/**
+ * Figure 5
+ */
+const cc10BubbleCtx = document.getElementById("cc-10-bubble").getContext("2d");
+cc10BubbleCtx.canvas.parentNode.style.width = "500px";
+const cc10BubbleGraph = new Chart(cc10BubbleCtx, {
+  type: "bubble",
+  data: cc10BubbleData,
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text:
+        "Рис 5. Зависимость compound names от CC при значениях 5 < CC <= 10 вместе с частотой",
+      position: "bottom"
+    },
+    scales: {
+      yAxes: [
+        {
+          type: "logarithmic",
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString()); //pass tick values as a string into Number function
+            }
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            stepSize: 1
+          }
+        }
+      ]
+    }
+  }
+});
+
+/**
+ * Figure 6
+ */
+const cc20BubbleCtx = document.getElementById("cc-20-bubble").getContext("2d");
+cc20BubbleCtx.canvas.parentNode.style.width = "500px";
+const cc20BubbleGraph = new Chart(cc20BubbleCtx, {
+  type: "bubble",
+  data: cc20BubbleData,
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text:
+        "Рис 6. Зависимость compound names от CC при значениях 10 < CC <= 20 вместе с частотой",
+      position: "bottom"
+    },
+    scales: {
+      yAxes: [
+        {
+          type: "logarithmic",
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString()); //pass tick values as a string into Number function
+            }
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            stepSize: 1
+          }
+        }
+      ]
+    }
+  }
+});
+
+/**
+ * Figure 7
+ */
+const ccInfBubbleCtx = document
+  .getElementById("cc-inf-bubble")
+  .getContext("2d");
+ccInfBubbleCtx.canvas.parentNode.style.width = "500px";
+const ccInfBubbleGraph = new Chart(ccInfBubbleCtx, {
+  type: "bubble",
+  data: ccInfBubbleData,
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text:
+        "Рис 6. Зависимость compound names от CC при значениях CC > 20 вместе с частотой",
+      position: "bottom"
+    },
+    scales: {
+      yAxes: [
+        {
+          type: "logarithmic",
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString());
+            }
+          }
+        }
+      ],
+      xAxes: [
+        {
+          type: 'logarithmic',
+          ticks: {
+            callback: function(value, index, values) {
+              return Number(value.toString());
+            }
+          }
+        }
+      ]
     }
   }
 });

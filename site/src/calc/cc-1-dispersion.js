@@ -6,7 +6,7 @@ const data = {
   labels: null,
   datasets: [
     {
-      label: 'Number of compound name per file',
+      label: "Number of compound name per file",
       data: null
     }
   ]
@@ -17,15 +17,14 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", line => {
-  const [cc, name] = line.split(',');
+  const [cc, name] = line.split(",");
   if (Number(cc) === 1) {
     result.add(Number(name));
   }
 });
 
 rl.on("close", () => {
-  const values = Array.from(result);
-  console.log(result.size);
+  const values = Array.from(result).sort((a, b) => a - b);
   data.datasets[0].data = values;
   data.labels = values;
   fs.writeFile("../cc1dissipation-data.json", JSON.stringify(data), err => {
